@@ -1,0 +1,11 @@
+20230206	16:27:03	0c0d8cb4-891c-4877-9628-e4eb810b8857	Error: Not allowed by CORS
+20230206	16:27:03	46ab62df-9917-48bd-99bc-c4a113ad7027	Error: Not allowed by CORS
+20230208	12:03:47	61b3cfc9-3b90-4a2f-ae1f-45f1d7bea678	TypeError: req.json is not a function
+20230208	12:24:37	4b9bf52a-2b3e-4088-afb7-8659ffbcd78d	Error: Cannot set headers after they are sent to the client
+20230208	12:24:38	044ffca2-f2a2-4cb1-9174-18755f2071b1	Error: Cannot set headers after they are sent to the client
+20230208	12:25:10	b8c3a5e7-de13-4cc9-8299-d22aaf822355	Error: Cannot set headers after they are sent to the client
+20230208	12:33:45	c4431599-94ba-4891-9864-60a0e4364c36	Error: Cannot set headers after they are sent to the client
+20230208	12:39:37	9e5f5ab9-3163-4bbc-9c3f-af4fa1598b81	TypeError: The "data" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of Object
+20230208	12:48:51	4287b237-7f10-4168-8969-42edf0ba5c3c	TypeError: currentData.push is not a function
+20230208	12:50:42	f31ba32a-a04c-437c-bf4c-b3bfb2ea063f	TypeError: The "data" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received type number (3)
+20230208	12:58:07	199f59dd-1f5a-4a1f-b35b-c11324b1d581	TypeError: The "data" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of Array
