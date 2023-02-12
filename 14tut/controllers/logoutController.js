@@ -1,11 +1,4 @@
-const usersDB = {
-  users: require("../model/users.json"),
-  setUsers: function (data) {
-    this.users = data;
-  },
-};
-const fsPromises = require("fs").promises;
-const path = require("path");
+const Users = require("../model/User");
 
 const handleLogout = async (req, res) => {
   // On client (Front-end), also delete the accessToken
@@ -15,9 +8,7 @@ const handleLogout = async (req, res) => {
   const refreshToken = cookies.jwt;
 
   // Is refreshToken in DB?
-  const foundUser = usersDB.users.find(
-    (person) => person.refreshToken === refreshToken
-  );
+  const foundUser = await Users.findOne({ refreshToken: refreshToken }).exec();
   if (!foundUser) {
     // Note: Pass the same option it is set with
     // maxAge is one of the parameters that can be left out
@@ -31,15 +22,9 @@ const handleLogout = async (req, res) => {
 
   // At this point there is a refresh token in the database
   // Delete refreshToken in DB
-  const otherUsers = usersDB.users.filter(
-    (person) => person.refreshToken !== foundUser.refreshToken
-  );
-  const currentUser = { ...foundUser, refreshToken: "" };
-
-  usersDB.setUsers([...otherUsers, currentUser]);
-  await fsPromises.writeFile(
-    path.join(__dirname, "..", "model", "users.json"),
-    JSON.stringify(usersDB.users)
+  await Users.findOneAndUpdate(
+    { refreshToken: refreshToken },
+    { refreshToken: "" }
   );
 
   res.clearCookie("jwt", {

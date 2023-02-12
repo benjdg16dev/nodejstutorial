@@ -1,31 +1,34 @@
-const data = {
-  employees: require("../model/employees.json"),
-  setEmployees: function (data) {
-    this.employees = data;
-  },
-};
-data.employees = require("../model/employees.json");
+const Employee = require("../model/Employee");
 
 const getAllEmployees = (req, res) => {
   res.json(data.employees);
 };
 
-const createNewEmployee = (req, res) => {
-  console.log(data.employees[data.employees.length - 1].id + 1 || 1);
-  const newEmployee = {
-    id: data.employees[data.employees.length - 1].id + 1 || 1,
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-  };
+const createNewEmployee = async (req, res) => {
+  const { body } = req;
+  const { firstname, lastname } = body;
 
-  if (!newEmployee.firstname || !newEmployee.lastname) {
+  // const newEmployee = {
+  //   id: data.employees[data.employees.length - 1].id + 1 || 1,
+  //   firstname: req.body.firstname,
+  //   lastname: req.body.lastname,
+  // };
+
+  if (!firstname || !lastname) {
     return res.status(400).json({
       message: "First and last name are required.",
     });
   }
 
-  data.setEmployees([...data.employees, newEmployee]);
-  res.status(201).json(data.employees);
+  const result = await Employee.create({
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+  });
+
+  console.log(result);
+  const allEmployees = Employee.find({});
+
+  res.status(201).json(allEmployees);
 };
 
 const updateEmployee = (req, res) => {
